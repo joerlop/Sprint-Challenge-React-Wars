@@ -38,6 +38,7 @@ class App extends Component {
         <div className="character-container">
           <CharacterList list={this.state.starwarsChars} />
         </div>
+        <button>Next!</button>
       </div>
     );
   }
