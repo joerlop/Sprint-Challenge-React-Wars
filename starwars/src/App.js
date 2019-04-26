@@ -45,10 +45,10 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="Header">React Wars</h1>
+        <button onClick={this.nextPage}>Next!</button>
         <div className="character-container">
           <CharacterList list={this.state.starwarsChars} />
         </div>
-        <button onClick={this.nextPage}>Next!</button>
       </div>
     );
   }
