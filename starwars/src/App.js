@@ -38,7 +38,12 @@ class App extends Component {
 
   nextPage = event => {
     event.preventDefault();
-    this.getCharacters(this.state.nextURL)
+    if (this.state.nextURL) {
+      this.getCharacters(this.state.nextURL)
+    } else {
+      alert("No more characters!");
+    }
+
   }
 
   render() {
