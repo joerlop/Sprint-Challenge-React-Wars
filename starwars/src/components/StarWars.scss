@@ -1,0 +1,13 @@
+.character {
+    width: 20%;
+    background: white;
+    opacity: 0.75;
+    border-radius: 10px;
+    margin: 25px;
+    padding: 10px;
+
+    .list-element {
+        list-style-image: url("../assets/dog-poop.svg")
+    }
+
+}

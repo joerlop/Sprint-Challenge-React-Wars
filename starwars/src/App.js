@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
+
+import CharacterList from "./components/CharacterList"
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      starwarsChars: []
+      starwarsChars: [],
+      nextURL: ""
     };
   }
 
@@ -22,17 +25,35 @@ class App extends Component {
         return res.json();
       })
       .then(data => {
-        this.setState({ starwarsChars: data.results });
+        console.log(data);
+        this.setState({ 
+          starwarsChars: data.results,
+          nextURL: data.next,
+        });
       })
       .catch(err => {
         throw new Error(err);
       });
   };
 
+  nextPage = event => {
+    event.preventDefault();
+    if (this.state.nextURL) {
+      this.getCharacters(this.state.nextURL)
+    } else {
+      alert("No more characters!");
+    }
+
+  }
+
   render() {
     return (
       <div className="App">
         <h1 className="Header">React Wars</h1>
+        <button onClick={this.nextPage}>Next!</button>
+        <div className="character-container">
+          <CharacterList list={this.state.starwarsChars} />
+        </div>
       </div>
     );
   }
