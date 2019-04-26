@@ -7,7 +7,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      starwarsChars: []
+      starwarsChars: [],
+      next: ""
     };
   }
 
@@ -24,7 +25,11 @@ class App extends Component {
         return res.json();
       })
       .then(data => {
-        this.setState({ starwarsChars: data.results });
+        console.log(data);
+        this.setState({ 
+          starwarsChars: data.results,
+          next: data.next,
+        });
       })
       .catch(err => {
         throw new Error(err);
@@ -38,7 +43,7 @@ class App extends Component {
         <div className="character-container">
           <CharacterList list={this.state.starwarsChars} />
         </div>
-        <button>Next!</button>
+        <button onClick={this.getCharacters(this.state.next)}>Next!</button>
       </div>
     );
   }
