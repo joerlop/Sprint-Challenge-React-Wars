@@ -8,7 +8,7 @@ class App extends Component {
     super();
     this.state = {
       starwarsChars: [],
-      next: ""
+      nextURL: ""
     };
   }
 
@@ -28,13 +28,18 @@ class App extends Component {
         console.log(data);
         this.setState({ 
           starwarsChars: data.results,
-          next: data.next,
+          nextURL: data.next,
         });
       })
       .catch(err => {
         throw new Error(err);
       });
   };
+
+  nextPage = event => {
+    event.preventDefault();
+    this.getCharacters(this.state.nextURL)
+  }
 
   render() {
     return (
@@ -43,7 +48,7 @@ class App extends Component {
         <div className="character-container">
           <CharacterList list={this.state.starwarsChars} />
         </div>
-        <button onClick={this.getCharacters(this.state.next)}>Next!</button>
+        <button onClick={this.nextPage}>Next!</button>
       </div>
     );
   }
